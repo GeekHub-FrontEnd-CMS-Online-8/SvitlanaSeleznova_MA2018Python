@@ -1,17 +1,17 @@
 from random import randrange
-converter = {'rock': 0, 'spock': 1, 'paper': 2, 'lizard': 3, 'scissors': 4}
+game = {'rock': 0, 'spock': 1, 'paper': 2, 'lizard': 3, 'scissors': 4}
 
 
 def name_to_number(name):
-    if name in converter.keys():
-        return converter[name]
+    if name in game.keys():
+        return game[name]
     else:
         print("There is no such name\n")
 
 
 def number_to_name(number):
-    if number in converter.values():
-        return list(converter.keys())[number]
+    if number in game.values():
+        return list(game.keys())[number]
     else:
         print("There is no such number\n")
 

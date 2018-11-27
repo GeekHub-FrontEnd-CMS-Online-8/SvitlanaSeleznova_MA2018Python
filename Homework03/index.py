@@ -45,10 +45,10 @@ def teak():
 def draw(canvas):
     text = view_timer(mlsec)
     canvas.draw_text(text, (100, 150), 50, "white")
-    canvas.draw_text(str(win_stops) + '/' + str(all_stops), (250, 35), 30, "yellow")
+    canvas.draw_text(str(win_stops) + "/" + str(all_stops), (250, 35), 30, "yellow")
 
 f = simplegui.create_frame("Stop: game", 300, 300)
-f.set_canvas_background('blue')
+f.set_canvas_background("blue")
 
 f.add_button("start", start, 100)
 f.add_button("stop", stop, 100)

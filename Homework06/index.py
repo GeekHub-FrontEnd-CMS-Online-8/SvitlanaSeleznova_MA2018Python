@@ -140,7 +140,7 @@ def hit():
             in_play = False
 
 def stand():
-    global outcome, player_score, dealer_score, in_play, score
+    global outcome, in_play, score
 
     in_play = False
 

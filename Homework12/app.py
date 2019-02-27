@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///locations.db'
 db = SQLAlchemy(app)
 
 @app.route('/')
@@ -28,15 +28,17 @@ def result():
     req = requests.get(url, params=params)
     res = req.json()
     address = res['results'][0]['formatted_address']
-    latitude = str(res['results'][0]['geometry']['location']['lat'])
-    longitude = str(res['results'][0]['geometry']['location']['lng'])
+    latitude = res['results'][0]['geometry']['location']['lat']
+    lat = str(latitude)
+    longitude = res['results'][0]['geometry']['location']['lng']
+    long = str(longitude)
     from models import Locations
-    new_zip_code = Locations(zip_code=zip_code, address=address, latitude=latitude, longitude=longitude)
+    new_zip_code = Locations(zip_code=zip_code, address=address, latitude=lat, longitude=long)
 
     db.session.add(new_zip_code)
     db.session.commit()
 
-    return render_template('result.html', zip_code=zip_code, address=address, latitude=latitude, longitude=longitude)
+    return render_template('result.html', zip_code=zip_code, address=address, lat=lat, long=long)
 
 @app.route('/show-results')
 def show_results():
@@ -45,4 +47,4 @@ def show_results():
     return render_template('show_results.html', locations=locations)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
